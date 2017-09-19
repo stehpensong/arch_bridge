@@ -46,4 +46,9 @@ cp -R $run_dir/resource/html $output_dir
 # 修改过的nginx.conf，覆盖NGINX原始配置.
 cp -R $rurn_dir/resource/conf/ $output_dir
 
+# remove tmp files
+
+rm -rf $nginx_dir
+rm -rf $pcre_dir
+
 
