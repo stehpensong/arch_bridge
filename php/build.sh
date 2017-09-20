@@ -63,4 +63,19 @@ rm -rf $php_dir
 #opcache.enable_cli=1  #php支持opcode缓存
 #zend_extension=opcache.so   #文末添加此行，开启opcode缓存功能
 
-
+# 添加NGINX转发
+# vim /app/nginx/conf/nginx.conf
+#    user  www www;   #首行user去掉注释,修改Nginx运行组为www www；必须与/usr/local/php/etc/php-fpm.conf中的user,group配置相同，否则php运行出错
+#        location / {
+#            root   html;
+#            index  index.html index.htm index.php;   #添加index.php
+#        }
+#        # pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000
+#        #取消FastCGI server部分location的注释,
+#        location ~ \.php$ {
+#            root           html;
+#            fastcgi_pass   127.0.0.1:9000;
+#            fastcgi_index  index.php;
+#            fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name;   #fastcgi_param行的参数,改为$document_root$fastcgi_script_name,或者使用绝对路径
+#            include        fastcgi_params;
+#        } 
